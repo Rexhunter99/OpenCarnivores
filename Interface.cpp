@@ -109,10 +109,6 @@ Halt the application with `Mess` as an explanation
 */
 void DoHalt(const char* Mess)
 {
-	if (!HARD3D && DirectActive && FULLSCREEN) {
-		lpDD->RestoreDisplayMode();
-	}
-
 	EnableWindow(hwndMain, FALSE);
 
 	if (strlen(Mess)) {

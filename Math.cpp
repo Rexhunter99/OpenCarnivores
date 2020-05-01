@@ -258,16 +258,16 @@ float FindVectorAlpha(float vx, float vy)
 	adx = std::fabs(vx);
 	ady = std::fabs(vy);
 
-	alpha = pi / 4.f;
-	dalpha = pi / 8.f;
+	alpha = Math::pi / 4.f;
+	dalpha = Math::pi / 8.f;
 
 	for (int i = 1; i <= 10; i++) {
 		alpha = alpha - dalpha * SGN(Mul2dVectors(adx, ady, (float)cos(alpha), (float)sin(alpha)));
 		dalpha /= 2;
 	}
 
-	if (vx < 0) if (vy < 0) alpha += pi; else alpha = pi - alpha;
-	else if (vy < 0) alpha = 2.f * pi - alpha;
+	if (vx < 0) if (vy < 0) alpha += Math::pi; else alpha = Math::pi - alpha;
+	else if (vy < 0) alpha = 2.f * Math::pi - alpha;
 
 	return alpha;
 }
@@ -370,7 +370,7 @@ void TraceModel(int xx, int zz, int o)
 	if (PointToVectorD(TraceA, TraceNv, v[0]) > 800.f) return;
 	v[0].y -= 400.f;
 
-	float malp = (float)((FMap[zz][xx] >> 2) & 7) * 2.f * pi / 8.f;
+	float malp = (float)((FMap[zz][xx] >> 2) & 7) * 2.f * Math::pi / 8.f;
 
 	float ca = (float)cos(malp);
 	float sa = (float)sin(malp);
@@ -405,8 +405,8 @@ void TraceCharacter(int c)
 
 	TModel* mptr = &chr.pinfo->Model;
 	CreateChMorphedModel(Characters[c]);
-	float ca = (float)cos(-chr.alpha + pi / 2.f);
-	float sa = (float)sin(-chr.alpha + pi / 2.f);
+	float ca = (float)cos(-chr.alpha + Math::pi / 2.f);
+	float sa = (float)sin(-chr.alpha + Math::pi / 2.f);
 	for (int vv = 0; vv < mptr->VCount; vv++) {
 		rVertex[vv].x = mptr->gVertex[vv].x * ca + mptr->gVertex[vv].z * sa + chr.pos.x;
 		rVertex[vv].y = mptr->gVertex[vv].y + chr.pos.y;
@@ -562,28 +562,28 @@ int  TraceShot(float ax, float ay, float az, float& bx, float& by, float& bz)
 
 void InitClips()
 {
-	ClipA.v1.x = -(float)sin(pi / 4 - 0.10);
+	ClipA.v1.x = -std::sinf(Math::pi / 4.f - 0.10f);
 	ClipA.v1.y = 0;
-	ClipA.v1.z = (float)cos(pi / 4 - 0.10);
+	ClipA.v1.z = std::cosf(Math::pi / 4.f - 0.10f);
 	ClipA.v2.x = 0; ClipA.v2.y = 1; ClipA.v2.z = 0;
 	MulVectorsVect(ClipA.v1, ClipA.v2, ClipA.nv);
 
-	ClipC.v1.x = +(float)sin(pi / 4 - 0.01);
+	ClipC.v1.x = +std::sinf(Math::pi / 4.f - 0.01f);
 	ClipC.v1.y = 0;
-	ClipC.v1.z = (float)cos(pi / 4 - 0.01);
+	ClipC.v1.z = std::cosf(Math::pi / 4.f - 0.01f);
 	ClipC.v2.x = 0; ClipC.v2.y = -1; ClipC.v2.z = 0;
 	MulVectorsVect(ClipC.v1, ClipC.v2, ClipC.nv);
 
 
 	ClipB.v1.x = 0;
-	ClipB.v1.y = (float)sin(pi / 5 - .05);
-	ClipB.v1.z = (float)cos(pi / 5 - .05);
+	ClipB.v1.y = std::sinf(Math::pi / 5.f - 0.05f);
+	ClipB.v1.z = std::cosf(Math::pi / 5.f - 0.05f);
 	ClipB.v2.x = 1; ClipB.v2.y = 0; ClipB.v2.z = 0;
 	MulVectorsVect(ClipB.v1, ClipB.v2, ClipB.nv);
 
 	ClipD.v1.x = 0;
-	ClipD.v1.y = -(float)sin(pi / 5 - .05);
-	ClipD.v1.z = (float)cos(pi / 5 - .05);
+	ClipD.v1.y = -std::sinf(Math::pi / 5.f - 0.05f);
+	ClipD.v1.z = std::cosf(Math::pi / 5.f - 0.05f);
 	ClipD.v2.x = -1; ClipD.v2.y = 0; ClipD.v2.z = 0;
 	MulVectorsVect(ClipD.v1, ClipD.v2, ClipD.nv);
 

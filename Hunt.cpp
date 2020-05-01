@@ -9,6 +9,7 @@
 #include <sstream>
 #include <thread>
 #include <chrono>
+#include <algorithm>
 
 
 std::chrono::steady_clock::duration g_TimeStart;
@@ -72,9 +73,6 @@ void ResetMousePos()
 
 void InsertModelList(TModel* mptr, float x0, float y0, float z0, int light, float al, float bt)
 {
-	/*if ( std::fabs(x0) > -z0 + BackViewR ) return;
-	if ( std::fabs(y0 - sb*512) > -z0 + 1024.f) return;*/
-
 	if (rmlistselector) {
 		rmlistA[rmcountA].mptr = mptr;
 		rmlistA[rmcountA].x0 = x0;
@@ -102,16 +100,6 @@ void InsertModelList(TModel* mptr, float x0, float y0, float z0, int light, floa
 		rmcountB++;
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 void RenderMList()
@@ -166,15 +154,22 @@ void RenderMList()
 
 float CalcFogLevel(Vector3d v)
 {
-	if (!FOGON) return 0;
-	BOOL vinfog = TRUE;
+	if (!FOGON)
+		return 0.f;
+
+	bool vinfog = true;
 	int cf = FogsMap[((int)(v.z + CameraZ)) >> 9][((int)(v.x + CameraX)) >> 9];
-	if ((!cf) && CAMERAINFOG) { cf = CameraFogI; vinfog = FALSE; }
-	if (UNDERWATER) cf = 127;
+	
+	if ((!cf) && CAMERAINFOG) {
+		cf = CameraFogI;
+		vinfog = true;
+	}
 
+	if (UNDERWATER) {
+		cf = 127;
+	}
 
-	/*ORIGINAL*/ //if (!(CAMERAINFOG | cf)) return 0;
-	if (!(CAMERAINFOG + cf)) return 0;
+	if (!(CAMERAINFOG && cf)) return 0;
 	TFogEntity* fptr;
 	fptr = &FogsList[cf];
 	CurFogColor = fptr->fogRGB;
@@ -184,18 +179,22 @@ float CalcFogLevel(Vector3d v)
 	v.y += CameraY;
 
 	float fla = -(v.y - fptr->YBegin * ctHScale) / ctHScale;
-	if (!vinfog) if (fla > 0) fla = 0;
+	if (!vinfog && fla > 0) {
+		fla = 0;
+	}
 
 	float flb = -(CameraY - fptr->YBegin * ctHScale) / ctHScale;
-	if (!CAMERAINFOG) if (flb > 0) flb = 0;
+	
+	if (!CAMERAINFOG && flb > 0) {
+		flb = 0;
+	}
 
-	if (fla < 0 && flb < 0) return 0;
+	if (fla < 0 && flb < 0) {
+		return 0;
+	}
 
 	if (fla < 0) { d *= flb / (flb - fla); fla = 0; }
 	if (flb < 0) { d *= fla / (fla - flb); flb = 0; }
-
-	//if (fla>fptr->YMax) fla=fptr->YMax;
-	//if (flb>fptr->YMax) flb=fptr->YMax;
 
 	float fl = (fla + flb);
 
@@ -203,6 +202,7 @@ float CalcFogLevel(Vector3d v)
 
 	return min(fl, fptr->FLimit);
 }
+
 
 void PreCashGroundModel()
 {
@@ -232,7 +232,7 @@ void PreCashGroundModel()
 
 			if (wtr) {
 				v[0].x += std::sinf(xx + yy + SKYDTime / 124.f) * 16.f;
-				v[0].z += std::sinf(pi / 2.f + xx + yy + SKYDTime / 124.f) * 16.f;
+				v[0].z += std::sinf(Math::pi / 2.f + xx + yy + SKYDTime / 124.f) * 16.f;
 			}
 
 
@@ -283,11 +283,11 @@ void PreCashGroundModel()
 
 				if (wtr | UNDERWATER) {
 					if (UNDERWATER) {
-						wdelta = (float)sin(-pi / 2 + RandomMap[yy & 31][xx & 31] / 512.f + RealTime / 400.f);
+						wdelta = (float)sin(-Math::pi / 2 + RandomMap[yy & 31][xx & 31] / 512.f + RealTime / 400.f);
 						clt += (int)(6 + wdelta * 8.f);
 					}
 					else {
-						wdelta = (float)sin(-pi / 2 + RandomMap[yy & 31][xx & 31] / 512.f + RealTime / (400.f + RandomMap[yy & 31][xx & 31] / 512.f)) * 6;
+						wdelta = (float)sin(-Math::pi / 2 + RandomMap[yy & 31][xx & 31] / 512.f + RealTime / (400.f + RandomMap[yy & 31][xx & 31] / 512.f)) * 6;
 						clt += (int)(wdelta);
 					}
 
@@ -316,8 +316,6 @@ void PreCashGroundModel()
 }
 
 
-
-
 void PreCashWaterModel()
 {
 	int x, y;
@@ -344,8 +342,8 @@ void PreCashWaterModel()
 				//float wdelta = (float)sin(xx*2-yy + RealTime/256.f);              
 				//wdelta = (float)sin(-pi/2 + RandomMap[yy & 31][xx & 31]/512.f + RealTime/400.f) * 16;
 				//v[0].y+=(float) wdelta; 
-				v[0].x += (float)sin(xx + yy + RealTime / 256.f) * 20.f;
-				v[0].z += (float)sin(pi / 2.f + xx + yy + RealTime / 256.f) * 20.f;
+				v[0].x += std::sinf(xx + yy + RealTime / 256.f) * 20.f;
+				v[0].z += std::sinf(Math::pi / 2.f + xx + yy + RealTime / 256.f) * 20.f;
 			}
 
 			v[0] = RotateVector(v[0]);
@@ -370,7 +368,6 @@ void PreCashWaterModel()
 }
 
 
-
 void AddShadowCircle(int x, int y, int R, int D)
 {
 	if (UNDERWATER) return;
@@ -389,7 +386,6 @@ void AddShadowCircle(int x, int y, int R, int D)
 				VMap[cy + yy - CCY + 64][cx + xx - CCX + 64].Light = 62;
 		}
 }
-
 
 
 void CreateChRenderList()
@@ -508,6 +504,7 @@ void RenderChList(int r)
 		}
 	}
 }
+
 
 void DrawScene()
 {
@@ -712,8 +709,8 @@ SKIPWIND:
 	CreateMorphedModel(&wptr->chinfo.Model, &wptr->chinfo.Animation[wptr->state - 1], wptr->FTime);
 
 	b = (float)sin((float)RealTime / 300.f) / 100.f;
-	wpnDAlpha = wptr->shakel * (float)sin((float)RealTime / 300.f + pi / 2) / 200.f;
-	wpnDBeta = wptr->shakel * (float)sin((float)RealTime / 300.f) / 400.f;
+	wpnDAlpha = wptr->shakel * std::sinf((float)RealTime / 300.f + Math::pi / 2) / 200.f;
+	wpnDBeta = wptr->shakel * std::sinf((float)RealTime / 300.f) / 400.f;
 	nv.z = 0;
 
 	RenderNearModel(&wptr->chinfo.Model, 0, 0, 0, 0, -wpnDAlpha, -wpnDBeta);
@@ -766,9 +763,6 @@ SKIPWEAPON:
 			}
 		}
 }
-
-
-
 
 
 void SwitchMode(const std::string& lps, bool& b)
@@ -872,7 +866,6 @@ void ProcessNameEdit(int key)
 }
 
 
-
 LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 {
 	bool A = (GetActiveWindow() == hWnd);
@@ -881,16 +874,18 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 		blActive = A;
 
 		if (GameState) {
-			if (blActive)
+			if (blActive) {
 				Activate3DHardware();
-			else
+				NeedRVM = true;
+			}
+			else {
 				ShutDown3DHardware();
+			}
 		}
+
 		if (blActive) {
 			Audio_Restore();
 		}
-		if (GameState)
-			if (blActive) NeedRVM = TRUE;
 	}
 
 	if (WaitKey != -1)
@@ -898,9 +893,11 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 			message == WM_LBUTTONDOWN || message == WM_RBUTTONDOWN)
 			AcceptNewKey();
 
-	if (message == WM_CHAR)
-		if (!GameState && MenuState == -1) ProcessNameEdit((int)wParam);
-
+	if (!GameState && MenuState == -1) {
+		if (message == WM_CHAR) {
+			ProcessNameEdit((int)wParam);
+		}
+	}
 
 	if (GameState)
 		if (message == WM_KEYDOWN) {
@@ -925,7 +922,7 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 		return 0;
 
 	case WM_KEYDOWN: {
-		BOOL CTRL = (GetKeyState(VK_SHIFT) & 0x8000);
+		bool CTRL = (GetKeyState(VK_SHIFT) & 0x8000);
 		switch ((int)wParam) {
 		case 219: if (DEBUG) ChangeViewR(-2); break;
 		case 221: if (DEBUG) ChangeViewR(+2); break;
@@ -969,9 +966,9 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 					SaveTrophy();
 				}
 				else {
-					if (PAUSE) PAUSE = FALSE;
+					if (PAUSE) PAUSE = false;
 					else EXITMODE = !EXITMODE;
-					if (ExitTime) EXITMODE = FALSE;
+					if (ExitTime) EXITMODE = false;
 					ResetMousePos();
 				}
 			break;
@@ -980,7 +977,7 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 		case VK_RETURN:
 			if (GameState && EXITMODE) {
 				if (MyHealth) ExitTime = 4000; else ExitTime = 1;
-				EXITMODE = FALSE;
+				EXITMODE = false;
 			}
 			break;
 
@@ -988,7 +985,7 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 			if (GameState && TrophyBody != -1) RemoveCurrentTrophy();
 			if (GameState && EXITMODE) {
 				LoadTrophy();
-				RestartMode = TRUE;
+				RestartMode = false;
 				GameState = 0;
 				ShowMenuVideo();
 			}
@@ -1021,8 +1018,6 @@ LONG APIENTRY MainWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 	}
 	return 0;
 }
-
-
 
 
 bool CreateMainWindow()
@@ -1082,13 +1077,6 @@ bool CreateMainWindow()
 
 	return true;
 }
-
-
-
-
-
-
-
 
 
 void HideWeapon()
@@ -1194,12 +1182,11 @@ void ProcessSlide()
 }
 
 
-
 void ProcessPlayerMovement()
 {
 
 	POINT ms;
-	if (FULLSCREEN) {
+	if (g_FullScreen) {
 		GetCursorPos(&ms);
 		if (REVERSEMS) ms.y = -ms.y + VideoCY * 2;
 		rav += (float)(ms.x - VideoCX) / 600.f;
@@ -1404,7 +1391,7 @@ void ProcessDemoMovement()
 		sqrt((DemoPoint.pos.x - CameraX) * (DemoPoint.pos.x - CameraX) +
 		(DemoPoint.pos.z - CameraZ) * (DemoPoint.pos.z - CameraZ)),
 		DemoPoint.pos.y - CameraY - 400.f);
-	if (b > pi) b = b - 2 * pi;
+	if (b > Math::pi) b = b - 2 * pi;
 	DeltaFunc(CameraBeta, -b, TimeDt / 4000.f);
 
 
@@ -1413,8 +1400,6 @@ void ProcessDemoMovement()
 	DeltaFunc(CameraY, h + 128, TimeDt / 8.f);
 	if (CameraY < h + 80) CameraY = h + 80;
 }
-
-
 
 
 void ProcessControls()
@@ -1671,26 +1656,6 @@ SKIPYMOVE:
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void ProcessGame()
 {
 	// -- This checks if the game state is initialising, then does Game::Init() stuff
@@ -1765,8 +1730,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	hInst = hInstance;
 #endif
 	MSG msg = MSG();
-	g_time_start = std::chrono::steady_clock::now().time_since_epoch();
-	//long long start_time = std::chrono::steady_clock::now().time_since_epoch().count();
+
+	// Initialise the 
+	g_TimeStart = std::chrono::steady_clock::now().time_since_epoch();
 
 	CreateLog();
 
@@ -1837,7 +1803,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 		_GameState = -1;
 
 		std::cout << "Entering messages loop." << std::endl;
-		for (; ; )
+		while (cengine.GetLoopStatus())
 		{
 			if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 			{
@@ -1858,27 +1824,28 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 				std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		}
 
-		ShutDown3DHardware();
+		ShutDown3DHardware(); // <- Redundant, ~CarnivoresEngine() calls this
 		std::cout << "Game normal shutdown." << std::endl;
 	}
-	catch (dohalt& e) {
+	catch (std::runtime_error& e) {
+		// We want to catch these first as they are usually thrown by Carnivores and not the C++ Standard Libary
+		std::cout << "\n\n!! FATAL RUNTIME EXCEPTION !!" << e.what() << std::endl;
+
 		std::stringstream ess;
-		ess << "Source file: " << e.file().substr(e.file().find_last_of("/\\")+1) << "\n";
-		ess << "Function: " << e.function() << "\n";
-		ess << "Line: " << e.line() << "\n";
-		ess << e.what() << "\n";
-		MessageBox(HWND_DESKTOP, ess.str().c_str(), "Carnivores - Exception", MB_OK | MB_ICONERROR | MB_SYSTEMMODAL);
-		std::cout << std::setfill('=') << std::setw(20) << "=" << std::endl;
-		std::cout << "!CARNIVORES FATAL EXCEPTION!\n" << ess.str();
+		ess << "Fatal Runtime Exception!\n" << e.what() << "\n";
+		MessageBox(HWND_DESKTOP, ess.str().c_str(), "Carnivores - Exception", MB_OK);
 	}
 	catch (std::exception& e) {
+		// Catch C++ Standard Library Exceptions, because it means we didnt try/catch it ourselves so the entire game is probably borked anyway
+		std::cout << "\n\n!! FATAL C++ STD::EXCEPTION !!" << e.what() << std::endl;
+
 		std::stringstream ess;
 		ess << "Fatal C++ Exception!\n" << e.what() << "\n";
 		MessageBox(HWND_DESKTOP, ess.str().c_str(), "Carnivores - Exception", MB_OK);
-		std::cout << ess.str();
 	}
 	catch (...) {
-		std::cout << "Fatal Unknown C++ Exception!\n";
+		// God help us all if we end up here somehow...
+		std::cout << "\n\n!! Fatal Unknown Exception !!" << std::endl;
 	}
 
 	CloseLog();

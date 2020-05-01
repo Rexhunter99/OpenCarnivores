@@ -307,13 +307,14 @@ int AI::checkPossiblePath(Character &character, bool check_water, bool check_obj
 }
 
 #ifndef DEGTORAD
-#define DEGTORAD(d) (d * glm::pi() / 180.0f)
+// NOTE: Don't use this... please...
+#define DEGTORAD(d) (d * Math::pi / 180.0f)
 #endif //DEGTORAD
 
 void AI::lookForAWay(Character& character, bool check_water, bool check_objects)
 {
-	vec3<float> rotation = character.m_targetAngle;
-	vec3<float> angleFound = rotation;
+	Vec3<float> rotation = character.m_targetAngle;
+	Vec3<float> angleFound = rotation;
 	float checkAngle = 15.f;
 	int maxPath = 16;
 	int curPath = 0;
@@ -324,7 +325,7 @@ void AI::lookForAWay(Character& character, bool check_water, bool check_objects)
 		return;
 	}
 
-	character.m_foundPaths++; M_PI;
+	character.m_foundPaths++;
 
 	// Check in a 180 degree range around the character on left and right sides (12 * 15 == 180)
 	for (int i=0; i<12; i++)

@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# HUNTDAT resource folder for Carnivores Game
+./HUNTDAT/

@@ -500,21 +500,12 @@ void CorrectModel(TModel& model)
 	for (int f = 0; f < model.FCount; f++) {
 		if (!(model.gFace[f].Flags & sfDoubleSide))
 			model.gFace[f].Flags |= sfNeedVC;
-#if defined(_d3d) || defined(_d3d11)
 		fp_conv(&model.gFace[f].tax);
 		fp_conv(&model.gFace[f].tay);
 		fp_conv(&model.gFace[f].tbx);
 		fp_conv(&model.gFace[f].tby);
 		fp_conv(&model.gFace[f].tcx);
 		fp_conv(&model.gFace[f].tcy);
-#else
-		model.gFace[f].tax = (model.gFace[f].tax << 16) + 0x8000;
-		model.gFace[f].tay = (model.gFace[f].tay << 16) + 0x8000;
-		model.gFace[f].tbx = (model.gFace[f].tbx << 16) + 0x8000;
-		model.gFace[f].tby = (model.gFace[f].tby << 16) + 0x8000;
-		model.gFace[f].tcx = (model.gFace[f].tcx << 16) + 0x8000;
-		model.gFace[f].tcy = (model.gFace[f].tcy << 16) + 0x8000;
-#endif
 	}
 
 	int fp = 0;
@@ -1180,15 +1171,12 @@ void LoadResources()
 
 	//======== load calls ==============//
 	std::cout << "Loading animal call sounds...";
-	char name[128];
-	wsprintf(name, "HUNTDAT/SOUNDFX/CALLS/call%d_a.wav", TargetDino + 1);
-	LoadWav(name, fxCall[0]);
-
-	wsprintf(name, "HUNTDAT/SOUNDFX/CALLS/call%d_b.wav", TargetDino + 1);
-	LoadWav(name, fxCall[1]);
-
-	wsprintf(name, "HUNTDAT/SOUNDFX/CALLS/call%d_c.wav", TargetDino + 1);
-	LoadWav(name, fxCall[2]);
+	sz << "HUNTDAT/SOUNDFX/CALLS/call" << (TargetDino + 1) << "_a.wav";
+	LoadWav(sz.str(), fxCall[0]); sz.str(""); sz.clear();
+	sz << "HUNTDAT/SOUNDFX/CALLS/call" << (TargetDino + 1) << "_b.wav";
+	LoadWav(sz.str(), fxCall[1]); sz.str(""); sz.clear();
+	sz << "HUNTDAT/SOUNDFX/CALLS/call" << (TargetDino + 1) << "_c.wav";
+	LoadWav(sz.str(), fxCall[2]); sz.str(""); sz.clear();
 
 	std::cout << "Ok!" << std::endl;
 
@@ -1219,21 +1207,20 @@ void LoadResources()
 	RenderLightMap();
 	PlaceHunter();
 
-	LoadPictureTGA(MapPic, "HUNTDAT/MENU/mapframe.tga");
+	LoadPictureTGA(MapPic, "HuntDat/Menu/mapframe.tga");
 	conv_pic(MapPic);
 
 	if (TrophyMode)	PlaceTrophy();
 	else PlaceCharacters();
+
 	GenerateMapImage();
 
-	if (TrophyMode) LoadPictureTGA(TrophyPic, "HUNTDAT/MENU/trophy.tga");
-	else LoadPictureTGA(TrophyPic, "HUNTDAT/MENU/trophy_g.tga");
+	if (TrophyMode) LoadPictureTGA(TrophyPic, "HuntDat/Menu/trophy.tga");
+	else LoadPictureTGA(TrophyPic, "HuntDat/Menu/trophy_g.tga");
 	conv_pic(TrophyPic);
 
-
-
-	LockLanding = FALSE;
-	Wind.alpha = rRand(1024) * 2.f * pi / 1024.f;
+	LockLanding = false;
+	Wind.alpha = rRand(1024) * 2.f * Math::pi / 1024.f;
 	Wind.speed = 10;
 	MyHealth = MAX_HEALTH;
 	ShotsLeft = WeapInfo[TargetWeapon].Shots;
@@ -1364,32 +1351,25 @@ void LoadCharacterInfo(TCharacterInfo& chinfo, const std::string& FName)
 //============= read animations =============//
 	//chinfo.Animation.reserve(chinfo.AniCount);
 	//fread((char*)chinfo.Animation.data(), chinfo.AniCount * sizeof(TAni));
-	try {
-		for (int a = 0; a < chinfo.AniCount; a++) {
-			TAni animation;
+	for (int a = 0; a < chinfo.AniCount; a++) {
+		TAni animation;
 
-			file.read(animation.aniName, 32);
-			file.read((char*)&animation.aniKPS, 4);
-			file.read((char*)&animation.FramesCount, 4);
+		file.read(animation.aniName, 32);
+		file.read((char*)&animation.aniKPS, 4);
+		file.read((char*)&animation.FramesCount, 4);
 
-			if (animation.aniKPS != 0)
-				animation.AniTime = (animation.FramesCount * 1000) / animation.aniKPS;
-			else
-				animation.AniTime = 0;
+		if (animation.aniKPS != 0)
+			animation.AniTime = (animation.FramesCount * 1000) / animation.aniKPS;
+		else
+			animation.AniTime = 0;
 		
-			animation.aniDataLength = (chinfo.Model.VCount * 3) * animation.FramesCount;
+		animation.aniDataLength = (chinfo.Model.VCount * 3) * animation.FramesCount;
 		
-			animation.aniData = new int16_t[animation.aniDataLength];
+		animation.aniData = new int16_t[animation.aniDataLength];
 
-			file.read((char*)animation.aniData, ((chinfo.Model.VCount * 6) * animation.FramesCount));
+		file.read((char*)animation.aniData, ((chinfo.Model.VCount * 6) * animation.FramesCount));
 
-			chinfo.Animation.push_back(animation);
-		}
-	}
-	catch (std::exception& e) {
-		std::stringstream ess;
-		ess << "C++ Exception: " << e.what();
-		MessageBox(HWND_DESKTOP, ess.str().c_str(), "Exception!", MB_OK | MB_ICONERROR);
+		chinfo.Animation.push_back(animation);
 	}
 
 	//============= read sound fx ==============//
@@ -1417,51 +1397,12 @@ void LoadCharacterInfo(TCharacterInfo& chinfo, const std::string& FName)
 }
 
 
+/*
+! DEPRECATED !
+Used only in the old Software Renderer
+*/
 void ScrollWater()
 {
-#if defined(_soft)
-	int WaterShift = RealTime / 40;
-	int xpos = (-WaterShift) & 127;
-
-	for (int y = 0; y < 128; y++) {
-		int ypos = (y - WaterShift * 2) & 127;
-
-		memcpy((void*)&(Textures.at(0).getData())[y * 128],
-			(void*)&(CopyTexture.getData())[ypos * 128 + xpos], (128 - xpos) * 2);
-
-		if (xpos)
-			memcpy((void*)&(Textures.at(0).getData())[y * 128 + (128 - xpos)],
-			(void*)&(CopyTexture.getData())[ypos * 128], xpos * 2);
-	}
-
-	xpos /= 2;
-
-	for (int y = 0; y < 64; y++) {
-		int ypos = (y * 2 - WaterShift * 2) & 127;
-		ypos /= 2;
-
-		memcpy((void*)&Textures[0]->DataB[y * 64],
-			(void*)&Textures[255]->DataB[ypos * 64 + xpos], (64 - xpos) * 2);
-
-		if (xpos)
-			memcpy((void*)&Textures[0]->DataB[y * 64 + (64 - xpos)],
-			(void*)&Textures[255]->DataB[ypos * 64], xpos * 2);
-	}
-
-	xpos /= 2;
-
-	for (int y = 0; y < 32; y++) {
-		int ypos = (y * 4 - WaterShift * 2) & 127;
-		ypos /= 4;
-
-		memcpy((void*)&Textures[0]->DataC[y * 32],
-			(void*)&Textures[255]->DataC[ypos * 32 + xpos], (32 - xpos) * 2);
-
-		if (xpos)
-			memcpy((void*)&Textures[0]->DataC[y * 32 + (32 - xpos)],
-			(void*)&Textures[255]->DataC[ypos * 32], xpos * 2);
-	}
-#endif
 }
 
 

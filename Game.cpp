@@ -3,6 +3,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 
@@ -25,14 +26,6 @@ void SetupRes()
 		OptRes = 0;
 		std::cout << "! ERROR SetupRes() !\n\t" << "Failed to set resolution, OptRes(" << OptRes << ") out of bounds." << std::endl;
 	}
-
-	// (OptRes == -1) custom INI defined resolution
-	/*if (OptRes == 0) { WinW = 320; WinH = 240; }
-	if (OptRes == 1) { WinW = 400; WinH = 300; }
-	if (OptRes == 2) { WinW = 512; WinH = 384; }
-	if (OptRes == 3) { WinW = 640; WinH = 480; }
-	if (OptRes == 4) { WinW = 800; WinH = 600; }
-	if (OptRes == 5) { WinW = 1024; WinH = 768; }*/
 }
 
 
@@ -49,7 +42,6 @@ float GetLandOUH(int x, int y)
 	else
 		return (float)((int)(HMap[y][x] + HMap[y + 1][x + 1]) / 2.f) * ctHScale;
 }
-
 
 
 float GetLandUpH(float x, float y)
@@ -112,8 +104,6 @@ float GetLandH(float x, float y)
 
 	return  (h / 256.f / 256.f - 48) * ctHScale;
 }
-
-
 
 
 float GetLandQH(float CameraX, float CameraZ)
@@ -225,8 +215,6 @@ void ProcessCommandLine()
 }
 
 
-
-
 void AddExplosion(float x, float y, float z)
 {
 	Explosions[ExpCount].pos.x = x;
@@ -291,6 +279,7 @@ void AddShipTask(int cindex)
 	}
 }
 
+
 void InitShip(int cindex)
 {
 	TCharacter* cptr = &Characters[cindex];
@@ -312,9 +301,6 @@ void InitShip(int cindex)
 	Ship.cindex = cindex;
 	Ship.FTime = 0;
 }
-
-
-
 
 
 void InitGameInfo()
@@ -458,7 +444,8 @@ void InitGameInfo()
 
 CarnivoresEngine::CarnivoresEngine()
 {
-	FULLSCREEN = true;
+	m_Loop = true;
+	g_FullScreen = true;
 	WATERANI = true;
 	NODARKBACK = true;
 	LoDetailSky = true;
@@ -530,9 +517,8 @@ CarnivoresEngine::CarnivoresEngine()
 
 	InitMenu();
 
+	// TODO : Replace with Audio
 	InitAudioSystem(hwndMain);
-
-	InitDirectDraw();
 
 	CreateVideoDIB();
 	CreateFadeTab();
@@ -563,7 +549,7 @@ CarnivoresEngine::CarnivoresEngine()
 	FogsList[0].FLimit = 000;
 
 	FogsList[127].fogRGB = 0x604500;
-	FogsList[127].Mortal = FALSE;
+	FogsList[127].Mortal = false;
 	FogsList[127].Transp = 450;
 	FogsList[127].FLimit = 160;
 
@@ -579,30 +565,11 @@ CarnivoresEngine::~CarnivoresEngine()
 		hdcMain = nullptr;
 	}
 
-	if (DirectActive)
-	{
-		lpDD->RestoreDisplayMode();
-		DirectActive = false;
-	}
-
 	ShutdownAudioSystem();
 
 	ShowCursor(true);
 }
 
-
-
-
-
-/* Linux version of timeGetTime():
-#include <sys/time.h>
-
-unsigned int timeGetTime()
-{
-struct timeval now;
-gettimeofday(&now, NULL);
-return now.tv_usec/1000;
-}*/
 
 void ProcessSyncro()
 {
@@ -618,23 +585,7 @@ void ProcessSyncro()
 	if (!PAUSE)
 		if (MyHealth) MyHealth += TimeDt * 4;
 	if (MyHealth > MAX_HEALTH) MyHealth = MAX_HEALTH;
-
-	/////////////////////
-	//auto time_now = std::chrono::system_clock::now();
-	//auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(time_now);
-	//auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch());
-	//RealTime = 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 void MakeCall()
@@ -684,8 +635,7 @@ void MakeCall()
 }
 
 
-void MakeShot(float ax, float ay, float az,
-	float bx, float by, float bz)
+void MakeShot(float ax, float ay, float az, float bx, float by, float bz)
 {
 	int sres;
 	TrophyRoom.Last.smade++;
@@ -808,15 +758,15 @@ void AnimateShip()
 
 
 	float L = VectorLength(SubVectors(Ship.tgpos, Ship.pos));
-	Ship.pos.y += 0.3f * (float)cos(RealTime / 256.f);
+	Ship.pos.y += 0.3f * std::cosf(RealTime / 256.f);
 
 
 	if (Ship.State)
 		if (Ship.speed > 1)
 			if (L < 4000)
 				if (VectorLength(SubVectors(PlayerPos, Ship.pos)) < (ctViewR + 2) * 256) {
-					Ship.tgpos.x += (float)cos(Ship.alpha) * 256 * 6.f;
-					Ship.tgpos.z += (float)sin(Ship.alpha) * 256 * 6.f;
+					Ship.tgpos.x += std::cosf(Ship.alpha) * 256 * 6.f;
+					Ship.tgpos.z += std::sinf(Ship.alpha) * 256 * 6.f;
 					Ship.tgpos.y = GetLandUpH(Ship.tgpos.x, Ship.tgpos.z) + Ship.DeltaY;
 				}
 
@@ -849,7 +799,7 @@ void AnimateShip()
 			if (Ship.FTime < 0) Ship.FTime = 0;
 
 			if (Ship.FTime == 0)
-				if (fabs(Characters[Ship.cindex].pos.y - (Ship.pos.y - 650 - (Ship.DeltaY - 2048))) < 1.f) {
+				if (std::fabs(Characters[Ship.cindex].pos.y - (Ship.pos.y - 650 - (Ship.DeltaY - 2048))) < 1.f) {
 					Ship.State = 1;
 					AddVoice(ShipModel.SoundFX[5].length,
 						ShipModel.SoundFX[5].lpData);
@@ -864,7 +814,7 @@ void AnimateShip()
 	float vspeed = 1.f + L / 128.f;
 	if (vspeed > 24) vspeed = 24;
 	if (Ship.State) vspeed = 24;
-	if (fabs(dalpha) > 0.4) vspeed = 0.f;
+	if (std::fabs(dalpha) > 0.4) vspeed = 0.f;
 	float _s = Ship.speed;
 	if (vspeed > Ship.speed) DeltaFunc(Ship.speed, vspeed, TimeDt / 200.f);
 	else Ship.speed = vspeed;
@@ -876,10 +826,10 @@ void AnimateShip()
 	//====== fly ===========//
 	float l = TimeDt * Ship.speed / 16.f;
 
-	if (fabs(dalpha) < 0.4)
+	if (std::fabs(dalpha) < 0.4)
 		if (l < L) {
-			Ship.pos.x += (float)cos(Ship.alpha) * l;
-			Ship.pos.z += (float)sin(Ship.alpha) * l;
+			Ship.pos.x += std::cosf(Ship.alpha) * l;
+			Ship.pos.z += std::sinf(Ship.alpha) * l;
 		}
 		else {
 			if (Ship.State) {
@@ -906,15 +856,15 @@ void AnimateShip()
 
 
 	//======= rotation ============//
-	if (Ship.tgalpha > Ship.alpha) currspeed = 0.1f + (float)fabs(dalpha) / 2.f;
-	else currspeed = -0.1f - (float)fabs(dalpha) / 2.f;
+	if (Ship.tgalpha > Ship.alpha) currspeed = 0.1f + std::fabs(dalpha) / 2.f;
+	else currspeed = -0.1f - std::fabs(dalpha) / 2.f;
 
-	if (fabs(dalpha) > pi) currspeed *= -1;
+	if (std::fabs(dalpha) > Math::pi) currspeed *= -1;
 
 	DeltaFunc(Ship.rspeed, currspeed, (float)TimeDt / 420.f);
 
 	float rspd = Ship.rspeed * TimeDt / 1024.f;
-	if (fabs(dalpha) < fabs(rspd)) { Ship.alpha = Ship.tgalpha; Ship.rspeed /= 2; }
+	if (std::fabs(dalpha) < std::fabs(rspd)) { Ship.alpha = Ship.tgalpha; Ship.rspeed /= 2; }
 	else {
 		Ship.alpha += rspd;
 		if (Ship.State)
@@ -922,8 +872,8 @@ void AnimateShip()
 				Characters[Ship.cindex].alpha += rspd;
 	}
 
-	if (Ship.alpha < 0) Ship.alpha += pi * 2;
-	if (Ship.alpha > pi * 2) Ship.alpha -= pi * 2;
+	if (Ship.alpha < 0) Ship.alpha += Math::pi * 2;
+	if (Ship.alpha > Math::pi * 2) Ship.alpha -= Math::pi * 2;
 	//======== move body ===========//
 	if (Ship.State) {
 		if (Ship.cindex != -1) {
@@ -938,7 +888,6 @@ void AnimateShip()
 		Ship.tgpos.y = GetLandUpH(Ship.tgpos.x, Ship.tgpos.z) + Ship.DeltaY;
 	}
 }
-
 
 
 void ProcessTrophy()
@@ -960,18 +909,14 @@ void ProcessTrophy()
 }
 
 
-
-
-
 void AnimateProcesses()
 {
-	//Wind.alpha+=siRand(16) / 512.f;
 	Wind.speed += siRand(1600) / 6400.f;
 	if (Wind.speed < 0.f) Wind.speed = 0.f;
 	if (Wind.speed > 20.f) Wind.speed = 20.f;
 
-	Wind.nv.x = (float)sin(Wind.alpha);
-	Wind.nv.z = (float)-cos(Wind.alpha);
+	Wind.nv.x = std::sinf(Wind.alpha);
+	Wind.nv.z =-std::cosf(Wind.alpha);
 	Wind.nv.y = 0.f;
 
 
@@ -1006,8 +951,6 @@ void AnimateProcesses()
 		}
 	}
 
-
-
 	if (ExitTime) {
 		ExitTime -= TimeDt;
 		if (ExitTime <= 0) {
@@ -1027,7 +970,6 @@ void AnimateProcesses()
 		}
 	}
 }
-
 
 
 void RemoveCurrentTrophy()
@@ -1064,7 +1006,9 @@ void LoadTrophy()
 
 	std::stringstream fname;
 	int rn = TrophyRoom.RegNumber;
-	fname << "trophy" << TrophyRoom.RegNumber << ".sav";
+	fname << "trophy" << std::setfill('0') << std::setw(2) << TrophyRoom.RegNumber << ".sav";
+
+	std::cout << "LoadTrophy( '" << fname.str() << "' )" << std::endl;
 
 	std::ifstream file(fname.str(), std::ios::binary);
 	if (!file.is_open()) {
@@ -1113,21 +1057,19 @@ void LoadTrophy()
 }
 
 
-
-
 void SaveTrophy()
 {
 	std::stringstream fname;
-	fname << "trophy" << TrophyRoom.RegNumber << ".sav";
+	fname << "trophy" << std::setfill('0') << std::setw(2) << TrophyRoom.RegNumber << ".sav";
 
 	int r = TrophyRoom.Rank;
 	TrophyRoom.Rank = 0;
-	if (TrophyRoom.Score >= 100) TrophyRoom.Rank = 1;
-	if (TrophyRoom.Score >= 300) TrophyRoom.Rank = 2;
+	if (TrophyRoom.Score >= 100) TrophyRoom.Rank = RANK_ADVANCED;
+	if (TrophyRoom.Score >= 300) TrophyRoom.Rank = RANK_MASTER;
 
 	if (r != TrophyRoom.Rank) {
-		if (TrophyRoom.Rank == 1) MenuState = 112;
-		if (TrophyRoom.Rank == 2) MenuState = 113;
+		if (TrophyRoom.Rank == RANK_ADVANCED) MenuState = 112;
+		if (TrophyRoom.Rank == RANK_MASTER) MenuState = 113;
 	}
 
 	TrophyRoom.Body[0].r4 = OPT_ALPHA_COLORKEY;

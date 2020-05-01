@@ -6,6 +6,9 @@ protected:
 
 public:
 
+	// Get a reference to the Renderer
+	static Renderer& Get();
+
 	Renderer() {}
 	virtual ~Renderer() {}
 

@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-#include "Math.h" // for vec3<T>
+#include "Math.h" // for Vec3<T>
 
 
 class Character;
@@ -38,9 +38,9 @@ public:
 	/* Play the associated soundFX of the character's animation */
 	void 	activateCharacterFx(Character& character);
 	/* Check of the point is colliding with steep terrain, water, objects, etc. */
-	bool 	checkPlaceCollision(vec3<float> &v, bool check_water = false, bool check_objects = false);
-	bool 	checkPlaceCollisionP(vec3<float> &v);
-	bool 	checkPlaceCollision2(vec3<float> &v, bool check_water);
+	bool 	checkPlaceCollision(Vec3<float> &v, bool check_water = false, bool check_objects = false);
+	bool 	checkPlaceCollisionP(Vec3<float> &v);
+	bool 	checkPlaceCollision2(Vec3<float> &v, bool check_water);
 	/* Return the amount of collisions detected along a defined path */
 	int		checkPossiblePath(Character &character, bool check_water, bool check_objects);
 	/* Try and find a new way around the character */

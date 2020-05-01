@@ -23,7 +23,7 @@
 #elif defined(_d3d11)
 #include <d3d11.h>
 #elif defined(_opengl)
-#include <gl.h>
+#include <GL/gl.h>
 #endif
 
 #define CARN_BUILDVERSION 4
@@ -149,38 +149,32 @@ public:
 };
 
 
+/*
+TODO : Move this to "Engine.h"
+*/
 class CarnivoresEngine {
+private:
+	bool m_Loop;
+
 public:
 
 	CarnivoresEngine();
 	~CarnivoresEngine();
-};
 
-class RenderEngine {
-public:
-
-	RenderEngine() {}
-	~RenderEngine() {}
-};
-
-class AudioEngine {
-public:
-
-	AudioEngine() {}
-	~AudioEngine() {}
+	bool GetLoopStatus() { return m_Loop; }
 };
 
 
-typedef struct tagMessageList {
+struct TMessageList {
 	int64_t timeleft;
 	std::string mtext;
-} TMessageList;
+};
 
-typedef struct tagTRGB {
+struct TRGB {
 	uint8_t B;
 	uint8_t G;
 	uint8_t R;
-} TRGB;
+};
 
 class TAni {
 public:
@@ -1284,7 +1278,8 @@ _EXTORNOT   uint16_t	FadeTab[65][0x8000];
 _EXTORNOT   uint8_t		MenuMap[300][400];
 
 
-_EXTORNOT   int     PrevTime, TimeDt, T, Takt, RealTime, StepTime, MyHealth, ExitTime,
+_EXTORNOT   int64_t PrevTime, TimeDt;
+_EXTORNOT	int		T, Takt, RealTime, StepTime, MyHealth, ExitTime,
 CallLockTime, NextCall;
 _EXTORNOT   float   DeltaT;
 _EXTORNOT   float   CameraX, CameraY, CameraZ, CameraAlpha, CameraBeta;

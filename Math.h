@@ -1,10 +1,12 @@
 #pragma once
 
 
-//const float pi = 3.14159265358979323846L;
-constexpr float pi = 3.14159265358979323846L;
-constexpr double pi = 3.14159265358979323846L;
-constexpr long double pi = 3.14159265358979323846L;
+namespace Math {
+	//const float pi = 3.14159265358979323846L;
+	constexpr float pi = 3.14159265358979323846L;
+	constexpr double pi = 3.14159265358979323846L;
+	constexpr long double pi = 3.14159265358979323846L;
+};
 
 
 /*
@@ -44,8 +46,9 @@ public:
 	void Normalize();
 };
 
-template<typename T> Vec3<T> Normalize(const Vec3<T>& v, float s = 1.0f);
-template<typename T> Vec3<T> Cross(vec3<T> const& a, vec3<T> const& b);
+template<typename T> Vec3<T> Normalize(const Vec3<T>& v, T s = 1.0f);
+template<typename T> T Dot(Vec3<T> const& a, Vec3<T> const& b);
+template<typename T> Vec3<T> Cross(Vec3<T> const& a, Vec3<T> const& b);
 
 /* Pseudo Random generator */
 namespace Random {
