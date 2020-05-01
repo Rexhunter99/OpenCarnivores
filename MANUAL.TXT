@@ -1,0 +1,589 @@
++-------+
+| Story |
++-------+
+
+While exploring the Universe, mankind has found the planet, code-named
+"FMM UV-32". Further surface and inhabitant exploration has disclosed that
+it was 50 millions years younger than Earth and was populated with
+prehistoric reptiles. A hunting company was established, giving customers
+a unique chance to become a dinosaur hunter.
+
+You, the hunter, become a client of this company, and receive authorization
+to hunt for dinosaurs. You will receive besides a variety of weapons and
+ammunition recommended for a hunt.
+
++---------------------+
+| System Requirements |
++---------------------+
+
+Pentium 200+ Processor (Pentium II Processor recomended)
+Windows 95 or Compatible operating system
+32 MB RAM
+85 MB of free Hard Disk space
+Mouse requred
+CD-ROM Drive
+DirectX Compatible Video Card (3DFX Voodoo or Voodoo2 Card recomended)
+DirectX Compatible Sound Card
+
++--------------+
+| Installation |
++--------------+
+
+Simply put your Carnivores CD into your CD-ROM drive and the Carnivores
+Launcher will automatically start. You just have to follow the directions
+on your screen.
+
+If you have Autorun disabled, click on the START button, then RUN. At the
+run line type in D:\SETUP and then click OK or press ENTER. If your CD-ROM
+drive is something other than 'D' substitute the correct letter. Then follow
+the directions on your screen.
+
++------------------------+
+| Preparing for the hunt |
++------------------------+
+
+When you start the game you'll see a registration screen where you have
+to register yourself as a new hunter. If you have passed the registration
+before you'll see your name in a list below. Simply click on it and press
+OK. If you register yourself as a new hunter you'll see a DinoHunt Corp.
+waiver:
+
+The risks that I may face while hunting on DinoHunt Corp. property have
+been fully explained to me, and I understand that all risks are mine alone,
+as DinoHunt Corp. holds no control over the animals on their property.
+In the event of harm including death or dismemberment incurred while
+visiting DinoHunt Corp. property, I fully release DinoHunt Corp. from any
+responsibility, financially or otherwise, and hold only myself accountable.
+
+You are free to accept or decline it.
+
+After you accept the terms of waiver, you'll see the main menu screen.
+Choose NEW to start the new hunt.
+
+Now you can choose the hunting location and dinosaur you want to hunt.
+It gives you some useful information about each dinosaur and locations.
+Also here you can toggle observer mode, which gives you opportunity to
+watch dinosaurs in their natural habitat.
+
+Hunting Locations
+=================
+
+There are six different hunting areas available in the game. Three of them
+are available for you to play even if you have a rank of beginner. Other
+become available as your rank is bumped up.
+
+Area 1 : The Wood of Turan Choks
+Minimal rank   : novice
+
+This island was the first that our astronauts discovered on the surface of
+a new planet. It is called after Turan Choks, the captain of the spaceship
+which discovered it. While exploring this area people found that its wood
+is highly populated by various dinosaurs species. Now this island is fully
+explored and is a very suitable place for obtaining elementary hunting
+experience.
+
+Area 2 : Basmachee Rocks
+Minimal rank   : novice
+
+The relief of this area seems very strange and different from the first
+sight. You can find either lakes and green hills or mountains and deserts.
+Some of the mountains have a very strange shape, so it is hard to say
+precisely what was their origin. However this island is a very intersting
+place to see and to discover.
+
+Area 3 : Jungles of Gravitsappa
+Minimal rank   : novice
+
+This island is covered by tropical jungles and is a very suitable place
+for most of dinosaurs to live. There are some cracks filled with lava
+in the south-eastern part of the island. Maybe they appeared due to some
+seismical processes that took place in the past. But now this place is
+safe for hunting and no earthquakes are expected.
+
+Area 4 : The Ancient Temple
+Minimal rank   : advanced
+
+There is a small temple situated in the middle of this island. It is
+surrounded by the pit of lava from all sides and only a ruined bridge
+leads inside it. Archeologists discovered that the temple was an ancient
+sacrificial place. The hieroglyphs written on the temple walls tell us,
+that after each sacrifice, demons came from the heart of the wood to have
+a feast of flesh and blood. They were as fast as the wind and had teeth
+sharper than blade.
+
+Area 5 : Pyramids of Shmu-Hadron
+Minimal rank   : advanced
+
+This area is famous for the ruins of the pyramids located deep in its
+deserts. It is still unknown, whether that was an alien civilization or
+a tribe from within the planet, who has built those pyramids. Our
+scientists have decrypted some of the manuscripts, that belong to this
+civilization. They reveal that civilization from FMM UV-32 worshiped
+Elder God Shmu-Hadron, which means 'Great Lizard'. However nothing is
+known about a mysterious death of this civilization.
+
+Area 6 : The Great Lake
+Minimal rank   : expert
+
+This location is surrounded by a wall of impassable mountains from all
+sides. There is a big lake in the center of it. It is considered that
+this lake was formed after a giant meteor falled onto the ground unleashing
+the underground waters and making the soil of this island unsuitable
+for most of vegetation.
+
+Dinosaurs
+=========
+
+When choosing the target dinosaur, keep in mind that except this kind of
+dinosaurs there are always some other species on the area, both herbivores
+and carnivores. If you will shoot the dinosaur different from the one you
+have chosen, you'll receive only half the points that it worth. While
+choosing dinosaur you can view their target zones. Also not all creatures
+are available from the very beginning. Just like some territories certain
+dinosaurs become available as soon as you reach certain rank as a hunter.
+
+Herbivorous dinosaurs:
+----------------------
+
+Name     : Parasaurolophus
+Size     : length 5-8 meters
+Weight   : up to  3 tons
+Diet     : plants
+Points   : 6
+Minimal
+rank     : novice
+
+Parasaurolophus ("beside Saurolophus") is a duckbill dinosaur with a very
+striking head crest. Projecting backward from its skull, the crest is a
+hollow tube up to 1.8 m (6 ft) long. A skull with a much shorter crest is
+originally thought to belong to a separate species, but paleontologists
+(scientists who study fossils) now believe it represents a female
+Parasaurolophus. Nasal passages run in pairs from the nostrils up to the
+crest tip and then back down to the snout.
+
+Name     : Stegosaurus
+Size     : length 8.5 meters
+Weight   : up to  6 tons
+Diet     : plants
+Points   : 7
+Minimal
+rank     : novice
+
+Stegosaurus ("roof lizard") gets its name from the big bony plates that
+jutt upward from its neck, back, and upper tail. Until recently, scientists
+were unsure how its plates are arranged. Some believe that they were paired.
+Others thought that they alternated. A third group put them in one row, with
+big plates overlapping. But species discovered on the surface of FMM UV-32
+proved that the plates formed two staggered rows. A bony plate probably
+protected each hip, and two pairs of spikes stuck out sideways from the end
+of the tail. As heavy as a big rhinoceros and about the length of a bus,
+Stegosaurus is the largest known plated dinosaur. It stood more than room-high
+at the hips and walked on elephantine limbs. Its small head was held low and
+ended in a toothless, horn-covered beak. Behind the beak were numerous teeth.
+It is not known if the tail droops or is held aloft.
+Note: Stegosaurus has the only target area in his left side around his heart.
+
+Name     : Pachycephallosaurus
+Size     : length 4-6 meters
+Weight   : up to  1.5 tons
+Diet     : plants
+Points   : 8
+Minimal
+rank     : novice
+
+The largest of the bone-headed dinosaurs is Pachycephalosaurus ("thick-headed
+lizard"). This bipedal (two-legged) plant-eater's brain is cushioned inside
+a domed braincase up to 25 cm (10 in) thick. Bony knobs edge the dome's rear
+rim, and short spikes projected upward from the snout. The teeth are tiny.
+Pachycephalosaurus is the length of a large car, with a fairly short, thick
+neck, short arms, a bulky body, long legs, and a heavy tail held rigid by a
+basketwork of hard, bony tendons.
+
+Name     : Triceratops
+Size     : length 6-8 meters
+Weight   : up to  4 tons
+Diet     : fibrous plants
+Points   : 9
+Minimal
+rank     : advanced
+
+Triceratops ("three-horned face") proved to be the largest-known ceratopsian
+("horned-faced" dinosaur). It is as heavy as an elephant, with a massive
+body, and its head is about 1.8 m (6 ft) long. A broad, bony frill sticks out
+from the back of its deep-beaked skull, it has a short nose horn, and two
+long, hollow-based brow horns jutted above its eyes.
+Note: Triceratops has the only target area in his left side around his heart.
+
+Carnivorous dinosaurs:
+----------------------
+
+Name     : Allosaurus
+Size     : length 4-6 meters
+Weight   : up to  2 tons
+Diet     : herbivorous dinosaurs
+Points   : 12
+Minimal
+rank     : novice
+
+Allosaurus ("other lizard") is one of the biggest carnivorous (flesh-eating)
+dinosaurs before the tyrannosaurids (dinosaurs like Tyrannosaurus).
+Allosaurus' long, muscular hindlimbs support a body nearly as heavy as an
+elephant's. The huge but lightweight skull consists largely of bony struts,
+with bony ridges above the eyes. The immense, expandable jaws had long,
+curved, saw-edged teeth. A thick, S-curved neck supports the head, and a
+long, deep tail counterbalance the heavy front end of this terrifying
+theropod ("beast-footed" dinosaur). Curved, tapering claws arm the three
+fingers of each short, strong arm. Each foot has three claw-bearing toes;
+the short first toe turns slightly backward. If it feels you on the long
+distance it may try to avoid meeting you. However, if you meet him close
+enough it will surely attack you. Extermely dangerous!
+
+Name     : Velociraptor
+Size     : length 3-5 meters
+Weight   : up to  1.5 tons
+Diet     : large dinosaurs
+Points   : 14
+Minimal
+rank     : advanced
+
+Velociraptor ("quick plunderer") is a ferocious, carnivorous (flesh-eating)
+theropod ("beast-footed" dinosaur) with a relatively large brain, powerful
+jaws, serrated teeth, and large fangs. It is a close relative of Deinonychus
+and, like all members of the dromaeosaurid ("running lizard") family, it was
+armed with a fearsome, retractable, sicklelike claw on its second toe. As
+the legs possessed powerful muscles, this enormous claw would have been
+Velociraptor's primary weapon, which it used to rake open its prey's belly.
+Velociraptor can be distinguished from other family members by its very low
+and narrow head. Velociraptor will attack you if he will notice you, and
+never run away. Extremely dangerous!
+Note: Velociraptor looks much like Galimimus.
+
+Name     : Tyrannosaurus Rex
+Size     : length 12-14 meters
+Weight   : up to  6.5 tons
+Diet     : everything that moves
+Points   : 24
+Minimal
+rank     : expert
+
+Tyrannosaurus ("tyrant lizard") is one of the last, largest, and most
+powerful of all predatory dinosaurs. One of the biggest flesh-eating land
+animals that ever lived, this two-legged theropod ("beast-footed" dinosaur)
+grows as heavy as an elephant, as long as a tennis court is wide, and tall
+enough to peer into an upstairs room. Saw-edged teeth arm the mighty jaws of
+its immense head, 1.2 m (4 ft) long, and strong claws tip the main toes of
+each gigantic foot. Compared to its massive legs, the small, two-fingered
+hands and arms, no longer than our own, appear absurdly puny. Despite its
+size, Tyrannosaurus is lightly constructed, with hollow bones and large
+windows in the skull. Tyrranosaurus will never run away from his prey.
+The only way to kill this monster is to shoot its eyes. Shooting any other
+part of its body will just make it more agressive. A good choice for hunting
+Tyrranosaurus is sniper rifle that gives you an ability to aim directly
+on its eye.
+
+After you have chosen location and dinosaur click Next button. You'll see
+another menu screen where you will choose your hunting weapon and equipment.
+
+Note: If you have switched observer mode on, clicking Next will bring you
+      directly to the game. This mode is designed specially to allow you
+      to observe the territories and their inhabitants, so there is no
+      weapon available for you in this mode and dinosaurs will simply
+      ignore your presence.
+
+Weapons
+=======
+Weapons availability also depends upon the rank of player.
+
+Shotgun
+-------
+7 shot magazine
+Minimal
+rank   : novice
+
+The Shotgun will shoot at the center of the circle at the end of the
+Shotgun barrel. This one is very powerfull, though very loud. So, aim
+well before making a shot because after it all creatures will run away
+in panic. Also they will be scared for a long time.
+
+X-Bow
+-----
+7 shot magazine
+Minimal
+rank   : novice
+
+The X-Bow will shoot at the aiming pins. The top pin is sighted in for
+shooting at 40 meters and the bottom pin is sighted in for shooting at 80
+meters. The main advantage of this kind of weapon is its silence, so you
+can shoot several times not scaring the dinosaurs. But from other hand
+it has a complex aiming system, therefore you'll need to practice to
+shoot precise.
+
+Sniper rifle
+------------
+7 shot magazine
+Minimal
+rank   : advanced
+
+The Sniper rifle will shoot exactly where the scope cross hairs are placed.
+This weapon gives you an opportunity to aim very precise but has one
+disadvantage - it has very narrow view area.
+
+Equipment
+=========
+
+Below is listed the additional equipment that is very helpfull during the
+hunt especially for beginners. To choose the accessory you want to use
+simply click on its icon and it will lighten up. However, keep in mind,
+that using one or more equipment items decreases the score that you gain
+during hunt by certain percentage. For example, if you used Radar and
+killed Allosaurus you'll get only 8 points instead of 12.
+
+Radar
+-----
+Radar gives you an opportunity to see dinosaurs that you have chosen from
+menu on your Map. They appear as green points on it.
+Points decrease - 30 percents
+
+Cover scent
+-----------
+Use this accessory to mask human odour from dinosaurs. Using the cover scent
+decreases the possibility of being noticed by them.
+Points decrease - 20 percents
+
+Camouflage
+----------
+Use a camouflaged suit to disguise during hunt. It will decrease the
+probability of being noticed by dinosaurs.
+Points decrease - 15 percents
+
+Tranquilizer
+------------
+If don't want to kill a dinosaur you can use a tranquilizer instead of
+normal bullets or arrows. This will just fall down the dinosaur but will
+not kill him. Also using the tranquilizer will increase your point by
+25 percents.
+
+Also there are three equipment items which you take on every hunt and
+which do not decrease your points. They are:
+
+Binoculars
+----------
+Use them to see much farther then usually. Use + and - keys to zoom in
+and out. If you aim your binoculars at the dinosaur you'll be given
+an information about this particular dinosaur.
+
+Map
+---
+Shows you the map of a hunting location. You can see your location on the
+map as the red point. The green circle around you is your viewing distance.
+If you use radar, you'll also be able to see dinosaurs on the map.
+
+Dinosaur call
+-------------
+Use it properly to attract the dinosaurs, that you are hunting on.
+Do not overuse it, because it may frighten herbivors from one hand and
+attract predators from other.
+
+When finished with weapon and equipment selection click START button to
+begin the hunt.
+
++--------------------+
+| Basics of gameplay |
++--------------------+
+
+You start the game in one of the starting sites. In the bottom left of the
+screen you'll see the Wind indicator, which shows the direction of the
+wind as it changes. The arrow length indicates the strength of the wind.
+To the right of it you can see the Compass, indicating the direction that
+the hunter is facing. You can toggle these indicators using <Caps Lock> key.
+Press <Tab> key to see the area map. Combining the indications of the
+compass and the map you can guide yourself and choose the appropriate
+movement direction.
+
+Now try to use some of the accessories. Press <B> or your custom key to
+raise/hide binoculars. Press <Alt> or your custom key to make a dinosaur
+call. Now try to raise the weapon. In upper left corner of the screen
+you'll see the number of ammo available for this particular weapon.
+Do not waste your ammo for nothing because in this case you'll need to
+restart the hunt. Take into account that you cannot run with the weapon
+raised.
+
+There are some dinosaurs roaming around you. You can shoot them but they
+are not the goal of the game, so they will not add points to you and will
+not be placed to the trophy area.
+
+While exploring the hunting locations you may come across some lakes, rivers
+or even lava pits. It is not recomended to stay under the water for a long
+time or fall into lava, because it may cause player's death. However, when
+you get there you'll see a bar in the upper right corner of the screen,
+indicating your health.
+
+Tracking the dinosaur
+---------------------
+
+If you want to succeed in the hunt you should remember some useful hints.
+
+Attract the dinosaur you are hunting on using the dinosaur call in realistic
+manner, so you don't scare the dinosaur off. But don't forget the fact, that
+together with your target dinosaur there are also some other creatures
+wandering around. Do not overuse the dinosaur call, for it may attract
+predators if you are hunting herbivores.
+
+Most of dinosaurs have an excellent sence of smell. If you are hunting
+upwind from a dinosaur it will smell you and avoid walking in your direction.
+Try to adjust your hunting location so you are always hunting downwind
+from a dinosaur. Also cover scent is very useful in this case.
+
+To avoid dinosaur from seeing you, hide behind trees, bushes and stones.
+Using the camouflage and crouching will decrease the possibility of being
+noticed by creatures.
+
+Try not to run or jump if not necessary, because it makes a lot of noise
+and may scare the herbivorous dinosaurs and attract predators.
+
+If you haven't killed the dinosaur by the first shoot, it is less likely
+that you'll hit it by next shoot, because it starts to run away from you
+and you'll not be able to aim his mortal zones. Moreover you'll waste your
+bullets for nothing. The idea is to trying to follow him. Maybe you'll be
+lucky enough to find it again.
+
+If you are not sure if the dinosaur you noticed is of right type, you should
+better use binoculars, because some of the dinosaurs look similar
+(e.g. deadly Velociraptor looks very similar to harmless Galimimus).
+
+When you are under attack of some carnivore, it usually has no sence to
+run away, because they are all much faster than you. It is better to try
+to aim well and start shooting (don't take care about ammo in this case,
+for it is the only chance to stay alive). Also it is not a good idea to
+hide in the water, because they are good swimmers as well and your weapons
+do not work under the water.
+
+If you are out of ammo or you feel that the dinosaur will kill you for sure,
+you can hit <Esc> to exit or restart the hunting location. However, you'll
+have to wait for few seconds for retrieval ship to come.
+
+When you finaly killed the dinosaur, the special retrieval ship will arrive
+to take your trophy to the trophy area. Each killed dinosaur will add
+certain points to your overall score. After your score hits 100 you'll
+get the rank of Advanced hunter, and after 300 your rank will be Expert.
+This will open some new dinosaurs, areas and weapons for your disposal.
+
++-----------+
+| Main Menu |
++-----------+
+
+STATUS BAR
+----------
+
+Status bar is situated in the top of main menu screen. It comprises three
+sections, which show your name, rank (novice, advanced, expert) and current
+score. Also there is a STATS button for more detailed information about
+your hunting experience. It shows the following information:
+
+Distance travelled - this value shows the distance travelled by you
+Hunting time       - time spent during hunting
+Shots made         - shows how many shots you have made
+Succesfull shots   - how many of your shots hit the aim
+Shot effectiveness - average effectiveness of your shots
+
+Status screen shows the statistics both of last hunt and of your total
+hunting experience.
+
+OPTIONS
+=======
+
+Game options
+------------
+Here you can adjust some options that will influence the whole gaming
+experience. They are:
+
+Agressivity - defines how agressive are certain dinosaurs species. This
+              value will take influence upon every carnivorous dinosaur
+              and some herbivorous dinosaurs (Pachicephalosaurus,
+              Triceratops)
+
+Density     - defines the quantity of dinosaurs on each area
+
+Sensitivity - defines how sensitive are dinosaurs to your presence (sight,
+              scent, fear)
+
+Video options
+-------------
+This section allows you to change some video issues.
+
+Resolution - sets one of available screen resolutions. Setting lower
+             resolutions usually increases game speed.
+Fog        - switches volumetric fog on/off
+             (Note: works only in 3DFX version of the game. Switching off
+             volumetric fog will increase the game speed).
+Textures   - allows you to change the quality of terrain/models textures
+             available options are: low/high/auto. Setting texture quality
+             to low will increase productivity if you are using a Voodoo/
+             VoodooII video card with low memory. Setting texture quality
+             to auto will automatically determine the available memory and
+             dynamically change the quality of textures (recommended).
+Shadows    - toggles realtime shadows on/off. Switching off realtime
+             shadows will increase the game speed.
+
+Controls
+--------
+Here you can customize your keyboard and mouse layout.
+
+The default keyboard/mouse layout is below:
+
+Forward             A
+Backward            Z
+Turn up             Up arrow
+Turn down           Down arrow
+Turn left           Left arrow
+Turn right          Right arrow
+Fire                Mouse1
+Get weapon          Mouse2
+Step left           ...
+Step right          ...
+Strafe              ...
+Jump                Space
+Run                 Shift
+Crouch              X
+Call                Alt
+Binoculars          B
+Reverse mouse       Off
+Map                 Tab
+Wind and Compass    Caps Lock
+
+TROPHY
+======
+
+Clicking this option will bring you to the trophy area. There you can see
+the dinosaurs that you have killed. The trophy area is divided onto 24
+locations. Once killed your trophy is put into one of these locations.
+If you move close enough in front of your trophy, in the bottom of the
+screen you will see an information window, showing trophy statistics:
+
+dinosaur name
+weight
+length
+which weapon was used to kill dinosaur
+points gained
+date
+time
+
+To remove a particular trophy from trophy area hit R while information
+window is on your screen. If you won't remove some trophy manually the
+First-In-First-Out principle will be used. So if you wish to have only
+some particular kind of trophy, you should remove the rest manually.
+
+CREDITS
+=======
+
+Programming         : Oleg Slusar, Artem Kuryavchenko
+Artwork             : Yaroslav Kravchenko, Alexey Serhiy
+Environments design : Andrey Sharanevitch, Denis Vereschagin
+Sound design        : Alexey Menshikov
+BIZ                 : Igor Karev, Denis Vereschagin
+
+QUIT
+====
+
+Exits to Windows operating system.
+

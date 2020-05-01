@@ -1,0 +1,282 @@
+// Carnivores 2 style _RES script, using official Carnivores 1 stats.
+// Also updated to show off a possible _RES update for better modding customisation
+// WIP! Incomplete, not useable on any game engine yet!
+// if price is 0, the item is unlocked by default
+// rank 0 is 'Beginner'/'Novice' and is the default rank
+// TODO: Finish the entries
+characters {
+	{
+		name    = 'Hunter'
+		file    = 'HUNTER1.CAR'
+		ai      = 0
+		health  = 1
+		basescore = -10
+	}
+	
+	// Beginning of Ambients
+	{
+		name = 'Moschops'
+		file = 'MOSH.CAR'
+		ai = 1
+		health = 2
+		mass = 0.15
+	}
+	{
+		name = 'Galimimus'
+		file = 'GALL.CAR'
+		ai = 2
+		health = 2
+		mass = 0.1
+	}
+	{
+		name = 'Dimorphodon'
+		fname = 'DIMOR2.CAR'
+		ai = 3
+		health = 1
+		mass = 0.05
+	}
+	{
+		name = 'Brachiosaurus'
+		fname = 'BRACHI1.CAR'
+		ai = 4
+		mass = 9.0
+		length = 12.0
+		radius = 400.0
+		health = 1024
+		basescore = 0
+		smell = 0.4
+		hear = 0.6
+		look = 0.8;
+		shipdelta = 168.0
+	}
+	// End of Ambients
+	
+	// Beginning of Huntables
+	{
+		name = 'Parasaurolophus'
+		fname = 'PAR2.CAR'
+		huntable = 1
+		ai = 10
+		price = 0
+		rank = 0
+		mass = 1.5
+		length = 5.8
+		radius = 320.0
+		health = 5
+		basescore = 6
+		smell = 0.8
+		hear = 1.0
+		look = 0.4
+		shipdelta = 48.0
+	}
+	{
+		name = 'Pachycephalosaurus'
+		fname = 'PACHY.CAR'
+		huntable = 1
+		ai = 11
+		price = 25
+		rank = 0
+		mass = 0.8
+		length = 4.5
+		radius = 280.0
+		health = 4
+		basescore = 8
+		smell = 0.4
+		hear = 0.8
+		look = 0.6
+		shipdelta = 36.0;
+	}
+	{
+		name = 'Stegosaurus'
+		fname = 'STEGO.CAR'
+		huntable = 1
+		ai = 12
+		price = 50
+		rank = 1
+		mass = 7.0
+		length = 7.0
+		radius = 480.0
+		health = 5
+		baseccore = 7
+		smell = 0.4
+		hear = 0.8
+		look = 0.6
+		shipdelta = 128.0
+	}
+	{
+		name = 'Allosaurus'
+		fname = 'ALLO.CAR'
+		huntable = 1
+		ai = 13
+		price = 100
+		rank = 2
+		mass = 0.5
+		length = 4.2
+		radius = 256.0
+		health = 3
+		baseScore = 12
+		scale0 = 1000
+		scaleA = 600
+		smell = 1.0
+		hear = 0.3
+		look = 0.5
+		shipdelta = 32.0
+		dangercall = TRUE
+	}
+	{
+		// TODO: Confirm that the Triceratops entry uses most of the same values as Chasmosaurus
+		name = 'Triceratops'
+		fname = 'TRICER.CAR'
+		huntable = 1
+		ai = 14
+		price = 150
+		rank = 2
+		mass = 3.0
+		length = 5.0
+		radius = 400.0
+		health = 8
+		basescore = 9
+		smell = 0.6
+		hear = 0.5
+		look = 0.4
+		shipdelta = 148.0
+	}
+	{
+		name = 'Velociraptor'
+		fname = 'VELO2.CAR'
+		huntable = 1
+		ai = 15
+		price = 250
+		rank = 3
+		mass = 0.3
+    		length = 4.0
+    		radius = 256.0
+    		health = 3
+    		basescore = 16
+    		scaleA = 400
+    		smell = 1.0
+		hear = 0.5
+		look = 0.4
+    		shipdelta = -24.0
+    		dangercall = TRUE
+	}
+	{
+		name = 'Tyrannosaurus Rex'
+		fname = 'TIREX.CAR'
+		huntable = 1
+		ai = 16
+		price = 400
+		rank = 4
+		mass = 6.0
+		length = 12.0
+		radius = 400.0
+		health = 1024
+		basescore = 20
+		smellK = 0.85
+		hear = 0.8
+		look = 0.8
+		shipdelta = 168.0
+		dangercall = TRUE
+	}
+}
+
+weapons {
+	{
+		name = 'Pistol'
+		fname = 'pistol.car'
+		bpic = 'pistolbullet.tga'
+		price = 25
+		rank = 0
+		power = 1.0
+		prec  = 0.3
+		loud  = 1.0
+		rate  = 1.2
+		shots = 6
+		trace	= 6
+	}
+	{
+		name = 'Shotgun'
+		fname = 'shotgun.car'
+		bpic = 'SHOTSHELL.TGA'
+		price = 50
+		rank = 0
+		power = 1.0
+		prec  = 0.3
+		loud  = 1.0
+		rate  = 1.2
+		shots = 6
+		trace	= 6
+	}
+	{
+		name = 'Rifle'
+		fname = 'rifle.car'
+		bpic = 'riflecart.tga'
+		rank = 1
+		price = 100
+		power = 4
+		prec  = 1.8
+		loud  = 1.5
+		rate  = 1.0
+		shots = 8
+	}
+	{
+		name = 'X-Bow'
+		fname = 'xbow.car'
+		bpic = 'xbowbolt.tga'
+		rank = 1
+		price = 200
+		fall = 1
+		power = 4
+		prec  = 0.7
+		loud  = 0.1
+		rate  = 1.2
+		shots = 8
+	}
+	{
+		name = 'Sniper Rifle'
+		fname = 'sniper.car'
+		bpic = 'riflecart.tga'
+		rank = 2
+		price = 300
+		power = 5
+		prec  = 1.8
+		loud  = 0.9
+		rate  = 1.0
+		shots = 6
+		optic = 1
+	}
+}
+
+areas {
+	{
+		name = 'Woods of Turan Choks'
+		pic = 'turanchoks.bmp'
+		pname = 'turanchoks'
+		iname = 'turanchoks.txt'
+		size = 512
+		price = 0 // The amount of points/credits needed to buy the license
+		rank = 0 // Required rank to buy a license to this area
+	}
+	{
+		name = 'Basmachee Rocks'
+		pic = 'basrocks.bmp'
+		pname = 'basrocks'
+		iname = 'basrocks.txt'
+		size = 512
+		price = 25 // The amount of points/credits needed to buy the license
+		rank = 0 // Required rank to buy a license to this area
+	}
+	{
+		name = 'Delphaeus Hills'
+		pic = 'delphhills.bmp'
+		pname = 'delphhills'
+		iname = 'delphhills.txt'
+		size = 1024
+		price = 50 // The amount of points/credits needed to buy the license
+		rank = 1 // Required rank to buy a license to this area
+	}
+}
+
+prices {
+	start = 100
+}

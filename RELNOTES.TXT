@@ -1,0 +1,41 @@
+ Carnivores Direct3D patch (beta 1.3) release notes 
+----------------------------------------------------
+This patch works only with FULL version of Carnivores.
+This version of D3D patch was tested and worked well on the following 
+chipsets:
+
+ Matrox G200
+ Riva 128
+ Riva TNT
+ ATI 3D Rage Pro
+ S3 Savage 3D
+ 3D Labs Permedia 2
+
+However, if you experience any problems with this patch, please download
+and install the latest drivers for your chipset. In most cases this helps.
+If you still have technical problems contact oleg@af.kiev.ua
+
+There are three options that influence the rendering process.
+
+1. COLORKEY (COLOR/ALPHA CHANNEL, default setting: Color)
+Some of the boards do not support colorkeying; this causes the appearance
+of black pixels instead of transparency. If you have this problem, please
+set this option to ALPHA CHANNEL mode. Some video boards can support both 
+options, but setting this option to a specific mode can enhance rendering 
+quality.
+
+We recomend to set ALPHA CHANNEL on Riva TNT based accelerators.
+
+2. TEXTURES (LOW/HIGH/AUTO)
+This option defines the size of textures used when rendering. If you have 
+a video card with 8+ Megs of VRAM set it to HIGH or AUTO. If you have less
+than 6 Megs of VRAM it is recommended to set this option to LOW or AUTO
+(this will improve game speed). If you are not sure about the amount of
+video memory of your card, set it to AUTO(in this case the game will
+set the quality of textures depending on the amount of memory available
+and scene complexity).
+
+3. FOG (ON/OFF)
+Usually, enabling fog will just decrease performance about 15-20%. But
+sometimes enabling or disabling fog can enhance or make worth rendering
+quality.
